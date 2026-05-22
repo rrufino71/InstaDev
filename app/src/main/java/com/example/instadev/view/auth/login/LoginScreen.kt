@@ -91,7 +91,8 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                 onClick = {},
-                enabled = uiState.isLoginEnabled
+                enabled = uiState.isLoginEnabled,
+                shape = MaterialTheme.shapes.extraLarge
             ) {
                 Text(
                     modifier = Modifier.padding(
