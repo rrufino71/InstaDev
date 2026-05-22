@@ -35,6 +35,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.instadev.R
+import com.example.instadev.view.auth.core.components.InstaButton
+import com.example.instadev.view.auth.core.components.InstaText
 
 
 @Preview
@@ -55,9 +57,8 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                "Español (España)",
-                color = MaterialTheme.colorScheme.onBackground,
+            InstaText(
+                text = "Español (España)",
                 modifier = Modifier.padding(top = 22.dp),
                 //style = MaterialTheme.typography.bodySmall
             )
@@ -73,9 +74,8 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
                 shape = RoundedCornerShape(30),
                 value = uiState.email,
                 label = {
-                    Text(
-                        "Usuario, correo electronico o movil",
-                        color = MaterialTheme.colorScheme.onBackground
+                    InstaText(
+                        text = "Usuario, correo electronico o movil",
                     )
                 },
                 onValueChange = { loginViewModel.onEmailChange(it) })
@@ -84,26 +84,22 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(30),
                 value = uiState.password,
-                label = { Text("Contraseña", color = MaterialTheme.colorScheme.onBackground) },
+                label = {
+                    InstaText(
+                        text = "Contraseña",
+                    )
+                },
                 onValueChange = { loginViewModel.onPassword(it) })
             Spacer(Modifier.height(10.dp))
-            Button(
+            InstaButton(
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+                text = "Inicial Sesión",
                 onClick = {},
                 enabled = uiState.isLoginEnabled,
-                shape = MaterialTheme.shapes.extraLarge
-            ) {
-                Text(
-                    modifier = Modifier.padding(
-                        vertical = 4.dp
-                    ), text = "Iniciar sesión",
-                    color = MaterialTheme.colorScheme.onPrimary
-                )
-            }
+            )
             TextButton(onClick = {}) {
-                Text(
-                    "Has olvidado tu contraseña ?",
+                InstaText(
+                    text = "Has olvidado tu contraseña ?",
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
@@ -113,7 +109,7 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
                 onClick = {},
                 border = BorderStroke(width = 1.dp, MaterialTheme.colorScheme.primary)
                 //colors = ButtonDefaults.outlinedButtonColors(MaterialTheme.colorScheme.primary)
-            ) { Text("Crear cuenta nueva", color =MaterialTheme.colorScheme.primary) }
+            ) { InstaText(text = "Crear cuenta nueva", color = MaterialTheme.colorScheme.primary) }
             Icon(
                 modifier = Modifier
                     .width(30.dp)
