@@ -1,5 +1,6 @@
 package com.example.instadev.view.auth.login
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -14,6 +15,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -42,18 +44,23 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
 //    var password by remember { mutableStateOf("") }
     //nos subscribimos al flow, al no mutable
     //lifecycle hace que muera cuando muere la pantalla
-    val uiState:LoginUiState by loginViewModel.uiState.collectAsStateWithLifecycle()
+    val uiState: LoginUiState by loginViewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold { padding ->
         Column(
             Modifier
-                .background(Color.White)
+                .background(MaterialTheme.colorScheme.background)
                 .padding(padding) //padding top
                 .padding(horizontal = 24.dp)
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("Español (España)", color = Color.Gray, modifier = Modifier.padding(top = 22.dp))
+            Text(
+                "Español (España)",
+                color = MaterialTheme.colorScheme.onBackground,
+                modifier = Modifier.padding(top = 22.dp),
+                //style = MaterialTheme.typography.bodySmall
+            )
             Spacer(Modifier.weight(1f))
             Image(
                 modifier = Modifier.size(65.dp),
@@ -62,46 +69,57 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
             )
             Spacer(Modifier.weight(1f))
             OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(30),
                 value = uiState.email,
-                label = {Text("Usuario, correo electronico o movil")},
-                onValueChange = {loginViewModel.onEmailChange(it)})
+                label = {
+                    Text(
+                        "Usuario, correo electronico o movil",
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                },
+                onValueChange = { loginViewModel.onEmailChange(it) })
             Spacer(Modifier.height(10.dp))
             OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(30),
                 value = uiState.password,
-                label = {Text("Contraseña")},
-                onValueChange = { loginViewModel.onPassword(it)})
+                label = { Text("Contraseña", color = MaterialTheme.colorScheme.onBackground) },
+                onValueChange = { loginViewModel.onPassword(it) })
             Spacer(Modifier.height(10.dp))
             Button(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = Color.Blue),
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                 onClick = {},
-                enabled = uiState.isLoginEnabled) {
+                enabled = uiState.isLoginEnabled
+            ) {
                 Text(
-                    modifier = Modifier
-                        .padding(
-                            vertical = 4.dp
-                        ), text = "Iniciar sesión"
+                    modifier = Modifier.padding(
+                        vertical = 4.dp
+                    ), text = "Iniciar sesión",
+                    color = MaterialTheme.colorScheme.onPrimary
                 )
             }
-            TextButton(onClick = {}) { Text("Has olvidado tu contraseña ?") }
+            TextButton(onClick = {}) {
+                Text(
+                    "Has olvidado tu contraseña ?",
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
             Spacer(Modifier.weight(1.3f))
             OutlinedButton(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = {}) { Text("Crear cuenta nueva") }
+                onClick = {},
+                border = BorderStroke(width = 1.dp, MaterialTheme.colorScheme.primary)
+                //colors = ButtonDefaults.outlinedButtonColors(MaterialTheme.colorScheme.primary)
+            ) { Text("Crear cuenta nueva", color =MaterialTheme.colorScheme.primary) }
             Icon(
                 modifier = Modifier
                     .width(30.dp)
                     .padding(vertical = 24.dp),
                 painter = painterResource(R.drawable.logo_meta),
                 contentDescription = "Logo Meta",
-                tint = Color.Gray,
+                tint = MaterialTheme.colorScheme.onBackground,
 
                 )
         }
