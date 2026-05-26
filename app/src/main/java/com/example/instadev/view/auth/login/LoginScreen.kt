@@ -30,7 +30,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.instadev.R
 import com.example.instadev.view.auth.core.components.InstaButton
+import com.example.instadev.view.auth.core.components.InstaButtonSecondary
 import com.example.instadev.view.auth.core.components.InstaText
+import com.example.instadev.view.auth.core.components.InstaTextField
 
 
 @Preview
@@ -63,27 +65,20 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
                 contentDescription = "Logo InstaDev"
             )
             Spacer(Modifier.weight(1f))
-            OutlinedTextField(
+            InstaTextField(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(30),
                 value = uiState.email,
-                label = {
-                    InstaText(
-                        text = stringResource(R.string.login_screen_textfield_email),
-                    )
-                },
+                label = stringResource(R.string.login_screen_textfield_email),
                 onValueChange = { loginViewModel.onEmailChange(it) })
             Spacer(Modifier.height(10.dp))
-            OutlinedTextField(
+            InstaTextField(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(30),
                 value = uiState.password,
-                label = {
-                    InstaText(
-                        text = stringResource(R.string.login_screen_textfield_password),
-                    )
-                },
+                label = stringResource(R.string.login_screen_textfield_password),
                 onValueChange = { loginViewModel.onPassword(it) })
+
             Spacer(Modifier.height(10.dp))
             InstaButton(
                 modifier = Modifier.fillMaxWidth(),
@@ -98,16 +93,15 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
                 )
             }
             Spacer(Modifier.weight(1.3f))
-            OutlinedButton(
+            InstaButtonSecondary(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = {},
-                border = BorderStroke(width = 1.dp, MaterialTheme.colorScheme.primary)
-                //colors = ButtonDefaults.outlinedButtonColors(MaterialTheme.colorScheme.primary)
-            ) { InstaText(text = stringResource(R.string.login_screen_button_register), color = MaterialTheme.colorScheme.primary) }
+                title = stringResource(R.string.login_screen_button_register)
+            )
             Icon(
                 modifier = Modifier
-                    .width(30.dp)
-                    .padding(vertical = 24.dp),
+                    .width(20.dp)
+                    .padding(vertical = 14.dp),
                 painter = painterResource(R.drawable.logo_meta),
                 contentDescription = "Logo Meta",
                 tint = MaterialTheme.colorScheme.onBackground,
