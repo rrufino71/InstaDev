@@ -8,12 +8,18 @@
     <string name="login_screen_button_login">Iniciar Sesión</string>
     <string name="login_screen_button_register">Crear nueva cuenta</string>
     <string name="login_screen_text_forgot_password">Has olvidado la contraseña ?</string>
-    <string name="register_screen_title">Cuál es tu número de móvil ? </string>
-    <string name="register_screen_subtitle">Introduce tu número de móvil de contacto.Nadie lo verá en tu perfil. </string>
+
+    <!-- Register Screen -->
+    <string name="register_screen_title_phone">Cuál es tu número de móvil ? </string>
+    <string name="register_screen_title_email">Cuál es tu correo electrónico ? </string>
+    <string name="register_screen_subtitle_phone">Introduce tu número de móvil de contacto.Nadie lo verá en tu perfil. </string>
+    <string name="register_screen_subtitle_email">Introduce tu correo electróonico.Nadie lo verá en tu perfil. </string>
     <string name="register_screen_body">Puede que recibas notificaciones nuestras en WhatsApp y por SMS por motivos de seguridad y para iniciar sesión.</string>
-    <string name="register_screen_textfield_register">Numero de Movil</string>
+    <string name="register_screen_textfield_register_phone">Numero de Movil</string>
+    <string name="register_screen_textfield_register_email">Correo Electrónico</string>
     <string name="register_screen_button_next">Siguiente</string>
     <string name="register_screen_button_register_with_email">Registrate con tu correo electrónico</string>
+    <string name="register_screen_button_register_with_phone">Registrate con tu número de móvil </string>
     <string name="register_screen_text_find_by_account">Buscar mi cuenta</string>
 
     <!-- Register Screen -->
