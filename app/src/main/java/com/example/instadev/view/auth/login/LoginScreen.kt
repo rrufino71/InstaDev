@@ -37,7 +37,7 @@ import com.example.instadev.view.auth.core.components.InstaTextField
 
 @Preview
 @Composable
-fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
+fun LoginScreen(loginViewModel: LoginViewModel = viewModel(), navigateToRegister:()->Unit) {
 //    var email by remember { mutableStateOf("") }
 //    var password by remember { mutableStateOf("") }
     //nos subscribimos al flow, al no mutable
@@ -95,7 +95,7 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel()) {
             Spacer(Modifier.weight(1.3f))
             InstaButtonSecondary(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = {},
+                onClick = {navigateToRegister()},
                 title = stringResource(R.string.login_screen_button_register)
             )
             Icon(

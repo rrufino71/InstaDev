@@ -3,6 +3,7 @@ package com.example.instadev.view.auth.register
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,7 +33,7 @@ import com.example.instadev.view.auth.core.components.InstaTextField
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterScreen(registerViewModel: RegisterViewModel = viewModel()) {
+fun RegisterScreen(registerViewModel: RegisterViewModel = viewModel(),navigateBack:()-> Unit) {
 
     //si en vez de por "by" pongo "=" cuando accedo a los valores debo poner ".value"
     val uiState:RegisterUiState by registerViewModel.uiState.collectAsStateWithLifecycle()
@@ -68,7 +69,8 @@ fun RegisterScreen(registerViewModel: RegisterViewModel = viewModel()) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
                         contentDescription = "Back",
-                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.clickable { navigateBack() }
                     )
                 }
             )
