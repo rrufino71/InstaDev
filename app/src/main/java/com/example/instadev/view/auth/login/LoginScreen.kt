@@ -67,14 +67,12 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel(), navigateToRegister
             Spacer(Modifier.weight(1f))
             InstaTextField(
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(30),
                 value = uiState.email,
                 label = stringResource(R.string.login_screen_textfield_email),
                 onValueChange = { loginViewModel.onEmailChange(it) })
             Spacer(Modifier.height(10.dp))
             InstaTextField(
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(30),
                 value = uiState.password,
                 label = stringResource(R.string.login_screen_textfield_password),
                 onValueChange = { loginViewModel.onPassword(it) })
