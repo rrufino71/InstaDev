@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.instadev.R
@@ -34,7 +35,7 @@ import com.example.instadev.view.auth.core.components.InstaTextField
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterScreen(registerViewModel: RegisterViewModel = viewModel(),navigateBack:()-> Unit) {
+fun RegisterScreen(registerViewModel: RegisterViewModel = hiltViewModel(), navigateBack:()-> Unit) {
 
     //si en vez de por "by" pongo "=" cuando accedo a los valores debo poner ".value"
     val uiState:RegisterUiState by registerViewModel.uiState.collectAsStateWithLifecycle()

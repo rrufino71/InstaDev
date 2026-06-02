@@ -26,22 +26,29 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.instadev.R
+import com.example.instadev.data.repository.AuthRepositoryImpl
+import com.example.instadev.domain.repository.AuthRepository
+import com.example.instadev.domain.usecase.Login
 import com.example.instadev.view.auth.core.components.InstaButton
 import com.example.instadev.view.auth.core.components.InstaButtonSecondary
 import com.example.instadev.view.auth.core.components.InstaText
 import com.example.instadev.view.auth.core.components.InstaTextField
 
 
-@Preview
-@Composable
-fun LoginScreen(loginViewModel: LoginViewModel = viewModel(), navigateToRegister:()->Unit) {
 //    var email by remember { mutableStateOf("") }
 //    var password by remember { mutableStateOf("") }
-    //nos subscribimos al flow, al no mutable
-    //lifecycle hace que muera cuando muere la pantalla
+//nos subscribimos al flow, al no mutable
+//lifecycle hace que muera cuando muere la pantalla
+
+@Composable
+fun LoginScreen(
+    loginViewModel: LoginViewModel = hiltViewModel(),
+    navigateToRegister:()->Unit
+) {
     val uiState: LoginUiState by loginViewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold { padding ->
@@ -75,13 +82,13 @@ fun LoginScreen(loginViewModel: LoginViewModel = viewModel(), navigateToRegister
                 modifier = Modifier.fillMaxWidth(),
                 value = uiState.password,
                 label = stringResource(R.string.login_screen_textfield_password),
-                onValueChange = { loginViewModel.onPassword(it) })
+                onValueChange = { loginViewModel.onPasswordChange(it) })
 
             Spacer(Modifier.height(10.dp))
             InstaButton(
                 modifier = Modifier.fillMaxWidth(),
                 text = stringResource(R.string.login_screen_button_login),
-                onClick = {},
+                onClick = {loginViewModel.onClickSelected()},
                 enabled = uiState.isLoginEnabled,
             )
             TextButton(onClick = {}) {
