@@ -1,9 +1,11 @@
 package com.example.instadev.view.auth.login
 
 
+import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.instadev.domain.entity.UserEntity
 import com.example.instadev.domain.usecase.Login
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -11,6 +13,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -41,7 +44,16 @@ class LoginViewModel @Inject constructor(val login: Login): ViewModel() {
         //las corrutinas permiten mandar tareas asincronas  y que nos avise cuando finalizan
         //si dispara en el io para que no corra el el main que es la ui y entonces bloquearia la app hasta q termine
         viewModelScope.launch(Dispatchers.IO,) {
-            login(_uiState.value.email, _uiState.value.password)
+            val response: UserEntity? = login(_uiState.value.email, _uiState.value.password)
+
+            //si vamos a hacer algo en la ui tenemos que hacerlo en el hilo principal
+            withContext(Dispatchers.Main) {
+                if(response != null) {
+                    Log.i("login","success ${response.name}")
+                }else{
+                    Log.i("login","unsuccess")
+                }
+            }
         }
     }
 
@@ -60,8 +72,8 @@ class LoginViewModel @Inject constructor(val login: Login): ViewModel() {
 }
 
 data class LoginUiState(
-    val email:String = "",
-    val password:String = "",
+    val email:String = "rrufino71@gmail.com",
+    val password:String = "123456789",
     val isLoading:Boolean = false,
     val isLoginEnabled: Boolean = false
 )
